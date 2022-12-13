@@ -1,4 +1,4 @@
-# planning-temp
+# Taks-manager
 
 ## Idea 
 1. simple project/task manager 
