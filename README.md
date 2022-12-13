@@ -1,4 +1,4 @@
-# planning
+# planning-temp
 
 ## Idea
 1. Hello World with vanilla js 
