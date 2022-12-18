@@ -9,6 +9,8 @@ var btn2 = document.getElementById("loginRegisterBtn");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
+var span2 = document.getElementsByClassName("close")[1];
+//var span = document.getElementsByClassName("close");
 
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
@@ -20,9 +22,16 @@ btn2.onclick = function() {
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+span.onclick = function(event) {
+  modal.style.display = "none" ;
+
+  console.log('pressing close button now');
+}
+
+span2.onclick = function(event) {
   modal2.style.display = "none";
+
+  console.log('pressing close button now');
 }
 
 // When the user clicks anywhere outside of the modal, close it
