@@ -25,7 +25,20 @@
     <div id="taskModal">
       <div class="taskModalContent">
         <span class="close">&times;</span>
-        <button>Create Task</button>
+        <form>
+          <label for="timeEstimate">Time Estimate:</label>
+          <input type="text" id="timeEstimate"></br>
+
+          <label for="complexity">Complexity:</label>
+          <input type="text" id="complexity"></br>
+
+          <label for="impact">Impact:</label>
+          <input type="text" id="impact"></br>
+
+          <label for="deadline">Deadline:</label>
+          <input type="text" id="deadline"></br>
+        </form>
+        <button id="createTaskBtn">Create Task</button>
       </div>
     </div>
 

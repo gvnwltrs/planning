@@ -1,43 +1,68 @@
 
+// Task Metrics
+let timeEstimate = 0;
+let complexity = 0;  
+let impact = 0;  
+let deadline = 0;  
+
+let taskQueue = []; 
+
 // Get the modal
-var modal = document.getElementById("taskModal");
-var modal2 = document.getElementById("loginRegisterModal");
+let taskModal = document.getElementById("taskModal");
+let loginRegisterModal = document.getElementById("loginRegisterModal");
 
 // Get the button that opens the modal
-var btn = document.getElementById("taskBtn");
-var btn2 = document.getElementById("loginRegisterBtn");
+let taskBtn = document.getElementById("taskBtn");
+let createTaskBtn = document.getElementById("createTaskBtn");
+let loginRegisterBtn = document.getElementById("loginRegisterBtn");
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-var span2 = document.getElementsByClassName("close")[1];
+let taskSpan = document.getElementsByClassName("close")[0];
+let loginRegisterSpan = document.getElementsByClassName("close")[1];
 //var span = document.getElementsByClassName("close");
 
 // When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
+taskBtn.onclick = function() {
+  taskModal.style.display = "block";
 }
 
-btn2.onclick = function() {
-  modal2.style.display = "block";
+createTaskBtn.onclick = function() {
+  timeEstimate = document.getElementById("timeEstimate").value;
+  complexity = document.getElementById("complexity").value;
+  impact = document.getElementById("impact").value;
+  deadline = document.getElementById("deadline").value;
+
+  console.log('timeEst value:', timeEstimate, '\n complexity: ', complexity,
+  '\nimpact:', impact, '\ndeadline', deadline);
+
+  // TODO: calculate priority level
+}
+
+let calculatePriorityLevel  = function() {
+
+}
+
+loginRegisterBtn.onclick = function() {
+  loginRegisterModal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function(event) {
-  modal.style.display = "none" ;
+taskSpan.onclick = function(event) {
+  taskModal.style.display = "none" ;
 
   console.log('pressing close button now');
 }
 
-span2.onclick = function(event) {
-  modal2.style.display = "none";
+loginRegisterSpan.onclick = function(event) {
+  loginRegisterModal.style.display = "none";
 
   console.log('pressing close button now');
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-  if (event.target == modal || event.target == modal2) {
-    modal.style.display = "none";
-    modal2.style.display = "none";
+  if (event.target == taskModal || event.target == loginRegisterModal) {
+    taskModal.style.display = "none";
+    loginRegisterModal.style.display = "none";
   }
 }
