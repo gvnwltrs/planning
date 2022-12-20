@@ -11,10 +11,7 @@
 </head>
     
 <body>
-    <!-- <p>Hello World</p> -->
-
-    <!--<i class="fa-solid fa-house"></i>-->
-
+    <!-- Nav bar -->
     <div class="header">
       <div class="button-container">
         <button id="taskBtn">Create Task/project</button>
@@ -22,10 +19,14 @@
       </div>
     </div>
 
+    <!-- Modals -->
     <div id="taskModal">
       <div class="taskModalContent">
         <span class="close">&times;</span>
         <form>
+          <label for="taskName">Task Name:</label>
+          <input type="text" id="taskName"></br>
+
           <label for="timeEstimate">Time Estimate:</label>
           <input type="text" id="timeEstimate"></br>
 
@@ -42,7 +43,6 @@
       </div>
     </div>
 
-
     <div id="loginRegisterModal">
       <div class="loginRegisterContent">
         <span class="close">&times;</span>
@@ -50,9 +50,23 @@
       </div>
     </div>
 
-    <div class="main">
+    <!-- Control Containers -->
+    <div id='taskBlockContainer'>
+
+      <div id='taskBlock'>
+        <h2>Task Priorities</h2>
+        <div class="taskBoxes">
+          <div draggable="true" class="box">A</div>
+        </div>
+      </div>
+
+      <div id='timeBlock'>
+        <h2>Time Block</h2>
+      </div>
+
     </div>
 
+    <!-- Footer --> 
     <div class="footer">
     </div>
 

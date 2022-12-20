@@ -1,10 +1,10 @@
 
 // Task Metrics
+let taskName = '';
 let timeEstimate = 0;
 let complexity = 0;  
 let impact = 0;  
 let deadline = 0;  
-
 let taskQueue = []; 
 
 // Get the modal
@@ -27,6 +27,7 @@ taskBtn.onclick = function() {
 }
 
 createTaskBtn.onclick = function() {
+  taskName = document.getElementById("taskName").value;
   timeEstimate = document.getElementById("timeEstimate").value;
   complexity = document.getElementById("complexity").value;
   impact = document.getElementById("impact").value;
@@ -35,11 +36,16 @@ createTaskBtn.onclick = function() {
   console.log('timeEst value:', timeEstimate, '\n complexity: ', complexity,
   '\nimpact:', impact, '\ndeadline', deadline);
 
+  // Add to task queue
+  taskQueue.push({taskName,timeEstimate, complexity, impact, deadline});
+
+  console.log(taskQueue); 
+
   // TODO: calculate priority level
 }
 
 let calculatePriorityLevel  = function() {
-
+  // TODO: build system to calculate pri's  
 }
 
 loginRegisterBtn.onclick = function() {

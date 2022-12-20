@@ -4,12 +4,17 @@ html {
 
 body {
   margin: 0; 
-  min-height: 100vh;
   background-color: whitesmoke;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
 }
 
 .button-container {
   display: flex;
+  flex: 1;
   justify-content: right;
   background-color: black;
   padding: 1rem;
@@ -76,6 +81,41 @@ button {
   cursor: pointer;
 }
 
+#taskBlockContainer {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+#taskBlock {
+  background-color: #F0F8FF;
+  flex: 1;
+  margin: 10px;
+  border-radius: 10px; 
+}
+
+#taskBlock h2 {
+  text-align: center; 
+}
+
+#timeBlock {
+  background-color: #F0FFFF;
+  flex: 1;
+  margin: 10px;
+  border-radius: 10px; 
+}
+
+#timeBlock {
+  text-align: center; 
+}
+
+.box {
+  border: 3px solid #666;
+  background-color: #ddd;
+  border-radius: .5em;
+  padding: 10px;
+  cursor: move;
+}
 
 
 
