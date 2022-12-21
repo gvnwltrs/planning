@@ -22,6 +22,7 @@ let loginRegisterSpan = document.getElementsByClassName("close")[1];
 
 let draggableBox = document.getElementById('box'); 
 let droppableBox = document.getElementById('box-drop'); 
+let droppableBox2 = document.getElementById('taskBoxes'); 
 
 taskBtn.onclick = function() {
   taskModal.style.display = "block";
@@ -88,6 +89,15 @@ droppableBox.addEventListener('drop', function(event) {
   this.appendChild(document.getElementById(data));
 });  
 
+droppableBox2.addEventListener('dragover', function(event) {
+  event.preventDefault();
+});  
+
+droppableBox2.addEventListener('drop', function(event) {
+  event.preventDefault();
+  let data = event.dataTransfer.getData('text/plain'); 
+  this.appendChild(document.getElementById(data));
+});  
   
 
 

@@ -117,6 +117,10 @@ button {
   cursor: move;
 }
 
+#taskBoxes {
+  height: 100%;
+}
+
 #box-drop {
   height: 100%;
 }
