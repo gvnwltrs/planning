@@ -109,7 +109,7 @@ button {
   text-align: center; 
 }
 
-.box {
+#box {
   border: 3px solid #666;
   background-color: #ddd;
   border-radius: .5em;
@@ -117,6 +117,9 @@ button {
   cursor: move;
 }
 
+#box-drop {
+  height: 100%;
+}
 
 
 

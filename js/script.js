@@ -19,9 +19,10 @@ let loginRegisterBtn = document.getElementById("loginRegisterBtn");
 // Get the <span> element that closes the modal
 let taskSpan = document.getElementsByClassName("close")[0];
 let loginRegisterSpan = document.getElementsByClassName("close")[1];
-//var span = document.getElementsByClassName("close");
 
-// When the user clicks the button, open the modal 
+let draggableBox = document.getElementById('box'); 
+let droppableBox = document.getElementById('box-drop'); 
+
 taskBtn.onclick = function() {
   taskModal.style.display = "block";
 }
@@ -72,3 +73,24 @@ window.onclick = function(event) {
     loginRegisterModal.style.display = "none";
   }
 }
+
+draggableBox.addEventListener('dragstart', function(event) {
+  event.dataTransfer.setData('text/plain', this.id)
+});  
+
+droppableBox.addEventListener('dragover', function(event) {
+  event.preventDefault();
+});  
+
+droppableBox.addEventListener('drop', function(event) {
+  event.preventDefault();
+  let data = event.dataTransfer.getData('text/plain'); 
+  this.appendChild(document.getElementById(data));
+});  
+
+  
+
+
+
+
+
