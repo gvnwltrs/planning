@@ -1,3 +1,4 @@
+"use strict";
 
 // Task Metrics
 let taskName = '';
@@ -20,9 +21,25 @@ let loginRegisterBtn = document.getElementById("loginRegisterBtn");
 let taskSpan = document.getElementsByClassName("close")[0];
 let loginRegisterSpan = document.getElementsByClassName("close")[1];
 
-let draggableBox = document.getElementById('box'); 
-let droppableBox = document.getElementById('box-drop'); 
-let droppableBox2 = document.getElementById('taskBoxes'); 
+//let draggableBox = document.getElementById('box'); 
+//let draggableBox = document.getElementsByClassName('box')[0]; 
+//let draggableBox2 = document.getElementsByClassName('box')[1]; 
+let draggableElements = document.querySelectorAll('.draggable');
+draggableElements.forEach(element => {
+  element.setAttribute('draggable', true); 
+  element.addEventListener('dragstart', handleDragStart); 
+  element.addEventListener('dragend', handleDragEnd); 
+});
+
+//let droppableBox = document.getElementById('taskBoxDrop'); 
+//let droppableBox2 = document.getElementById('timeBlockDrop'); 
+let dropTargets = document.querySelectorAll('.drop-target');
+dropTargets.forEach(target => {
+  target.addEventListener('dragenter', handleDragEnter);
+  target.addEventListener('dragover', handleDragOver);
+  target.addEventListener('drop', handleDrop);
+});
+
 
 taskBtn.onclick = function() {
   taskModal.style.display = "block";
@@ -75,29 +92,59 @@ window.onclick = function(event) {
   }
 }
 
-draggableBox.addEventListener('dragstart', function(event) {
-  event.dataTransfer.setData('text/plain', this.id)
-});  
+function handleDragStart(event) {
+  event.dataTransfer.setData('text/plain', event.target.id);
+}
 
-droppableBox.addEventListener('dragover', function(event) {
-  event.preventDefault();
-});  
+function handleDragEnd(event) {
 
-droppableBox.addEventListener('drop', function(event) {
+}
+
+function handleDragEnter(event) {
+  event.target.classList.add('drag-over');
+}
+
+function handleDragOver(event) {
   event.preventDefault();
-  let data = event.dataTransfer.getData('text/plain'); 
+}
+
+function handleDrop(event) {
+  event.preventDefault();
+  let data = event.dataTransfer.getData('text/plain');
   this.appendChild(document.getElementById(data));
-});  
+}
+//draggableBox.addEventListener('dragstart', function(event) {
+//  console.log(this);
+//  event.dataTransfer.setData('text/plain', this.id);
+//});  
+//
+//draggableBox2.addEventListener('dragstart', function(event) {
+//  event.dataTransfer.setData('text/plain', this.id);
+//});  
+//
+//droppableBox.addEventListener('dragover', function(event) {
+//  event.preventDefault();
+//});  
+//
+//droppableBox.addEventListener('drop', function(event) {
+//  event.preventDefault();
+//  let data = event.dataTransfer.getData('text/plain'); 
+//  this.appendChild(document.getElementById(data));
+//  //this.appendChild(document.getElementsByClassName(data)[0]);
+//});  
+//
+//droppableBox2.addEventListener('dragover', function(event) {
+//  event.preventDefault();
+//});  
+//
+//droppableBox2.addEventListener('drop', function(event) {
+//  event.preventDefault();
+//  let data = event.dataTransfer.getData('text/plain'); 
+//  console.log(data);
+//  this.appendChild(document.getElementById(data));
+//  //this.appendChild(document.getElementsByClassName(data)[1]);
+//});  
 
-droppableBox2.addEventListener('dragover', function(event) {
-  event.preventDefault();
-});  
-
-droppableBox2.addEventListener('drop', function(event) {
-  event.preventDefault();
-  let data = event.dataTransfer.getData('text/plain'); 
-  this.appendChild(document.getElementById(data));
-});  
   
 
 
