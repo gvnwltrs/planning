@@ -93,6 +93,7 @@ window.onclick = function(event) {
 }
 
 function handleDragStart(event) {
+  console.log('result:', event.target.id);
   event.dataTransfer.setData('text/plain', event.target.id);
 }
 
