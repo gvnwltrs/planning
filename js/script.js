@@ -14,7 +14,7 @@ let loginRegisterModal = document.getElementById("loginRegisterModal");
 
 // Get the button that opens the modal
 let taskBtn = document.getElementById("taskBtn");
-let createTaskBtn = document.getElementById("createTaskBtn");
+let createTask = document.getElementById("createTaskBtn");
 let loginRegisterBtn = document.getElementById("loginRegisterBtn");
 
 // Get the <span> element that closes the modal
@@ -45,7 +45,10 @@ taskBtn.onclick = function() {
   taskModal.style.display = "block";
 }
 
-createTaskBtn.onclick = function() {
+createTask.onclick = function() {
+  // Parent Box
+  let taskParent = document.getElementById("drop-target");
+
   taskName = document.getElementById("taskName").value;
   timeEstimate = document.getElementById("timeEstimate").value;
   complexity = document.getElementById("complexity").value;
@@ -58,9 +61,28 @@ createTaskBtn.onclick = function() {
   // Add to task queue
   taskQueue.push({taskName,timeEstimate, complexity, impact, deadline});
 
+  // TODO: build each task as element in dom with unique id (use part of the task name)
+  let newTaskElement = document.createElement('div');
+  newTaskElement.id = taskName;
+  newTaskElement.innerHTML = taskName;
+  newTaskElement.className = 'draggable'; 
+  taskParent.appendChild(newTaskElement);
+
+  createTaskBlock();
+
   console.log(taskQueue); 
 
   // TODO: calculate priority level
+}
+
+let createTaskBlock = function() {
+  let draggableElements = document.querySelectorAll('.draggable');
+  draggableElements.forEach(element => {
+  element.setAttribute('draggable', true); 
+  element.addEventListener('dragstart', handleDragStart); 
+  element.addEventListener('dragend', handleDragEnd); 
+});
+
 }
 
 let calculatePriorityLevel  = function() {
@@ -93,6 +115,7 @@ window.onclick = function(event) {
 }
 
 function handleDragStart(event) {
+  //console.log('result:', event.target.id);
   console.log('result:', event.target.id);
   event.dataTransfer.setData('text/plain', event.target.id);
 }
