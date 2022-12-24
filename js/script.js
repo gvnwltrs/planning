@@ -10,6 +10,7 @@ let taskQueue = [];
 
 // Get the modal
 let taskModal = document.getElementById("taskModal");
+let taskForm = document.getElementById('Form');
 let loginRegisterModal = document.getElementById("loginRegisterModal");
 
 // Get the button that opens the modal
@@ -45,21 +46,32 @@ taskBtn.onclick = function() {
   taskModal.style.display = "block";
 }
 
-createTask.onclick = function() {
+createTask.addEventListener('keypress', function(event) {
+  event.preventDefault(); 
+  console.log('I saw that!');
+  if (event.code == 'Enter') {
+    console.log('got it!!');
+    //createTask.click();
+  }
+});
+
+createTask.onclick = function(event) {
+  event.preventDefault();
   // Parent Box
   let taskParent = document.getElementById("drop-target");
 
   taskName = document.getElementById("taskName").value;
-  timeEstimate = document.getElementById("timeEstimate").value;
-  complexity = document.getElementById("complexity").value;
-  impact = document.getElementById("impact").value;
-  deadline = document.getElementById("deadline").value;
+ // timeEstimate = document.getElementById("timeEstimate").value;
+ // complexity = document.getElementById("complexity").value;
+ // impact = document.getElementById("impact").value;
+ // deadline = document.getElementById("deadline").value;
 
-  console.log('timeEst value:', timeEstimate, '\n complexity: ', complexity,
-  '\nimpact:', impact, '\ndeadline', deadline);
+ // console.log('timeEst value:', timeEstimate, '\n complexity: ', complexity,
+ // '\nimpact:', impact, '\ndeadline', deadline);
 
   // Add to task queue
-  taskQueue.push({taskName,timeEstimate, complexity, impact, deadline});
+  //taskQueue.push({taskName,timeEstimate, complexity, impact, deadline});
+  taskQueue.push({taskName});
 
   // TODO: build each task as element in dom with unique id (use part of the task name)
   let newTaskElement = document.createElement('div');
@@ -73,6 +85,10 @@ createTask.onclick = function() {
   console.log(taskQueue); 
 
   // TODO: calculate priority level
+  //
+
+  taskForm.reset();
+  taskModal.style.display = 'none'; 
 }
 
 let createTaskBlock = function() {
