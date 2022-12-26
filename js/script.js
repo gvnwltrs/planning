@@ -153,6 +153,18 @@ function handleDrop(event) {
   let data = event.dataTransfer.getData('text/plain');
   this.appendChild(document.getElementById(data));
 }
+
+if (document.addEventListener) {
+  document.addEventListener('contextmenu', function(e) {
+    alert("You've tried to open context menu"); //here you draw your own menu
+    e.preventDefault();
+  }, false);
+} else {
+  document.attachEvent('oncontextmenu', function() {
+    alert("You've tried to open context menu");
+    window.event.returnValue = false;
+  });
+}
 //draggableBox.addEventListener('dragstart', function(event) {
 //  console.log(this);
 //  event.dataTransfer.setData('text/plain', this.id);
