@@ -7,10 +7,17 @@ let complexity = 0;
 let impact = 0;  
 let deadline = 0;  
 let taskQueue = []; 
+let itemToRemove; 
+//let menu; 
+//let deleteItem; 
+//let menu = document.createElement("div");
+//let deleteItem = document.createElement("div");
+
 
 // Get the modal
 let taskModal = document.getElementById("taskModal");
 let taskForm = document.getElementById('Form');
+let taskInput = document.getElementById('taskName');
 let loginRegisterModal = document.getElementById("loginRegisterModal");
 
 // Get the button that opens the modal
@@ -44,6 +51,7 @@ dropTargets.forEach(target => {
 
 taskBtn.onclick = function() {
   taskModal.style.display = "block";
+  taskInput.focus();
 }
 
 createTask.addEventListener('keypress', function(event) {
@@ -57,6 +65,7 @@ createTask.addEventListener('keypress', function(event) {
 
 createTask.onclick = function(event) {
   event.preventDefault();
+
   // Parent Box
   let taskParent = document.getElementById("drop-target");
 
@@ -154,52 +163,46 @@ function handleDrop(event) {
   this.appendChild(document.getElementById(data));
 }
 
-if (document.addEventListener) {
-  document.addEventListener('contextmenu', function(e) {
-    alert("You've tried to open context menu"); //here you draw your own menu
-    e.preventDefault();
-  }, false);
-} else {
-  document.attachEvent('oncontextmenu', function() {
-    alert("You've tried to open context menu");
-    window.event.returnValue = false;
-  });
+// Right-click Interaction Menu 
+document.addEventListener("contextmenu", handleContextMenu);
+
+function handleContextMenu(event) {
+  console.log('got something!'); 
+  event.preventDefault();
+
+  var menu = document.createElement("div");
+  menu.classList.add("context-menu");
+
+  var deleteItem = document.createElement("div");
+  deleteItem.classList.add("context-menu-item");
+  deleteItem.innerHTML = "Delete";
+  deleteItem.addEventListener("click", handleDelete);
+
+  menu.appendChild(deleteItem);
+  document.body.appendChild(menu);
+
+  menu.style.display = 'block';
+  menu.style.position = 'fixed';
+  menu.style.padding = '25px';
+  menu.style.s = 'left'; 
+  menu.style.backgroundColor = 'lightgray';
+  menu.style.left = event.clientX + "px";
+  menu.style.top = event.clientY + "px";
 }
-//draggableBox.addEventListener('dragstart', function(event) {
-//  console.log(this);
-//  event.dataTransfer.setData('text/plain', this.id);
-//});  
-//
-//draggableBox2.addEventListener('dragstart', function(event) {
-//  event.dataTransfer.setData('text/plain', this.id);
-//});  
-//
-//droppableBox.addEventListener('dragover', function(event) {
-//  event.preventDefault();
-//});  
-//
-//droppableBox.addEventListener('drop', function(event) {
-//  event.preventDefault();
-//  let data = event.dataTransfer.getData('text/plain'); 
-//  this.appendChild(document.getElementById(data));
-//  //this.appendChild(document.getElementsByClassName(data)[0]);
-//});  
-//
-//droppableBox2.addEventListener('dragover', function(event) {
-//  event.preventDefault();
-//});  
-//
-//droppableBox2.addEventListener('drop', function(event) {
-//  event.preventDefault();
-//  let data = event.dataTransfer.getData('text/plain'); 
-//  console.log(data);
-//  this.appendChild(document.getElementById(data));
-//  //this.appendChild(document.getElementsByClassName(data)[1]);
-//});  
 
-  
+function handleDelete() {
 
+  console.log(this);
 
+  // delete the element here
+  //console.log('delete'); 
+
+  this.parentElement.remove();
+  //event.target.remove();
+  itemToRemove.remove();
+  //console.log(event.target);
+  //document.body.removeChild(event.target.element); 
+}
 
 
 

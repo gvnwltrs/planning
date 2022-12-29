@@ -122,6 +122,10 @@ button {
   height: 100%;
 }
 
+.context-menu-item:hover {
+  background-color: #F0FFFF;
+}
+
 
 
 
