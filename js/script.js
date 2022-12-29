@@ -7,12 +7,7 @@ let complexity = 0;
 let impact = 0;  
 let deadline = 0;  
 let taskQueue = []; 
-let itemToRemove; 
-//let menu; 
-//let deleteItem; 
-//let menu = document.createElement("div");
-//let deleteItem = document.createElement("div");
-
+let currentTaskSelect; 
 
 // Get the modal
 let taskModal = document.getElementById("taskModal");
@@ -29,9 +24,6 @@ let loginRegisterBtn = document.getElementById("loginRegisterBtn");
 let taskSpan = document.getElementsByClassName("close")[0];
 let loginRegisterSpan = document.getElementsByClassName("close")[1];
 
-//let draggableBox = document.getElementById('box'); 
-//let draggableBox = document.getElementsByClassName('box')[0]; 
-//let draggableBox2 = document.getElementsByClassName('box')[1]; 
 let draggableElements = document.querySelectorAll('.draggable');
 draggableElements.forEach(element => {
   element.setAttribute('draggable', true); 
@@ -39,8 +31,6 @@ draggableElements.forEach(element => {
   element.addEventListener('dragend', handleDragEnd); 
 });
 
-//let droppableBox = document.getElementById('taskBoxDrop'); 
-//let droppableBox2 = document.getElementById('timeBlockDrop'); 
 let dropTargets = document.querySelectorAll('.drop-target');
 dropTargets.forEach(target => {
   target.addEventListener('dragenter', handleDragEnter);
@@ -70,6 +60,7 @@ createTask.onclick = function(event) {
   let taskParent = document.getElementById("drop-target");
 
   taskName = document.getElementById("taskName").value;
+  // TODO: mix these into task formation 
  // timeEstimate = document.getElementById("timeEstimate").value;
  // complexity = document.getElementById("complexity").value;
  // impact = document.getElementById("impact").value;
@@ -140,8 +131,6 @@ window.onclick = function(event) {
 }
 
 function handleDragStart(event) {
-  //console.log('result:', event.target.id);
-  console.log('result:', event.target.id);
   event.dataTransfer.setData('text/plain', event.target.id);
 }
 
@@ -165,10 +154,18 @@ function handleDrop(event) {
 
 // Right-click Interaction Menu 
 document.addEventListener("contextmenu", handleContextMenu);
-
 function handleContextMenu(event) {
-  console.log('got something!'); 
+
+  // console.log(event.target.class);
   event.preventDefault();
+  console.log(event);
+  if (event.target.classList.contains('draggable')) {
+    console.log('it is a ', event.target, '!');
+    currentTaskSelect = event.target; 
+  }
+
+  var menuContainer = document.createElement('div');
+  menuContainer.classList.add('context-menu-container');
 
   var menu = document.createElement("div");
   menu.classList.add("context-menu");
@@ -176,32 +173,35 @@ function handleContextMenu(event) {
   var deleteItem = document.createElement("div");
   deleteItem.classList.add("context-menu-item");
   deleteItem.innerHTML = "Delete";
-  deleteItem.addEventListener("click", handleDelete);
+  deleteItem.addEventListener("click", handleDelete, true);
 
+  menuContainer.appendChild(menu);
   menu.appendChild(deleteItem);
-  document.body.appendChild(menu);
+  document.body.appendChild(menuContainer);
 
-  menu.style.display = 'block';
-  menu.style.position = 'fixed';
-  menu.style.padding = '25px';
-  menu.style.s = 'left'; 
-  menu.style.backgroundColor = 'lightgray';
-  menu.style.left = event.clientX + "px";
-  menu.style.top = event.clientY + "px";
+  menuContainer.style.display = 'block';
+  menuContainer.style.position = 'fixed';
+  menuContainer.style.padding = '50px';
+  menuContainer.style.alignItems = 'left'; 
+  menuContainer.style.backgroundColor = 'lightgray';
+  menuContainer.style.left = event.clientX + "px";
+  menuContainer.style.top = event.clientY + "px";
+
+  window.onclick = function(event) {
+    console.log(event); 
+    menuContainer.style.display = "none";
+  }
+
 }
 
 function handleDelete() {
 
-  console.log(this);
+  this.parentElement.parentElement.remove();
+  if (currentTaskSelect) {
+    currentTaskSelect.remove(); 
+  }
+  currentTaskSelect = undefined; 
 
-  // delete the element here
-  //console.log('delete'); 
-
-  this.parentElement.remove();
-  //event.target.remove();
-  itemToRemove.remove();
-  //console.log(event.target);
-  //document.body.removeChild(event.target.element); 
 }
 
 
