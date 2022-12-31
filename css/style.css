@@ -4,7 +4,10 @@ html {
 
 body {
   margin: 0; 
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
+  /* background-color: #9400D3; */
+  /* background-color: #555555; */
+  background-color: #2F4F4F;
   min-height: 100vh;
 }
 
@@ -89,7 +92,9 @@ button {
 }
 
 #taskBlock {
-  background-color: #F0F8FF;
+  /* background-color: #F0F8FF; */
+  /* background-color: #00008B; */
+  background-color: #5F9EA0;
   flex: 1;
   margin: 10px;
   border-radius: 10px; 
@@ -100,7 +105,9 @@ button {
 }
 
 #timeBlock {
-  background-color: #F0FFFF;
+  /* background-color: #F0FFFF; */
+  /* display: grid;  */
+  background-color: #5F9EA0;
   flex: 1;
   margin: 10px;
   border-radius: 10px; 
@@ -116,10 +123,22 @@ button {
   border-radius: .5em;
   padding: 10px;
   cursor: move;
+  display: grid;
+  grid-template-areas:
+  "header header header"
+  "timeblock1 timeblock2 timeblock3"
+  "footer footer footer";
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 50px 1fr 50px;
+}
+
+.timblock1 {
+  grid-area: timeblock1;
 }
 
 .drop-target {
   height: 100%;
+  display: grid;
 }
 
 .context-menu-item:hover {
