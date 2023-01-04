@@ -31,8 +31,15 @@ draggableElements.forEach(element => {
   element.addEventListener('dragend', handleDragEnd); 
 });
 
-let dropTargets = document.querySelectorAll('.drop-target');
-dropTargets.forEach(target => {
+let dropTargets1 = document.querySelectorAll('.drop-target1');
+dropTargets1.forEach(target => {
+  target.addEventListener('dragenter', handleDragEnter);
+  target.addEventListener('dragover', handleDragOver);
+  target.addEventListener('drop', handleDrop);
+});
+
+let dropTargets2 = document.querySelectorAll('.drop-target2');
+dropTargets2.forEach(target => {
   target.addEventListener('dragenter', handleDragEnter);
   target.addEventListener('dragover', handleDragOver);
   target.addEventListener('drop', handleDrop);
@@ -54,6 +61,7 @@ createTask.addEventListener('keypress', function(event) {
 });
 
 createTask.onclick = function(event) {
+  console.log(event); 
   event.preventDefault();
 
   // Parent Box

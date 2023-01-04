@@ -124,21 +124,48 @@ button {
   padding: 10px;
   cursor: move;
   display: grid;
-  grid-template-areas:
-  "header header header"
-  "timeblock1 timeblock2 timeblock3"
-  "footer footer footer";
-  grid-template-columns: 1fr 1fr 1fr; 
-  grid-template-rows: 50px 1fr 50px;
 }
 
-.timblock1 {
+.timeblock1 {
   grid-area: timeblock1;
 }
 
-.drop-target {
-  height: 100%;
+/* .drop-target { */
+/*   height: 10%; */
+/*   display: grid; */
+/*   grid-template-areas: */
+/*   "header header header" */
+/*   "timeblock1 timeblock2 timeblock3" */
+/*   "footer footer footer"; */
+/*   grid-template-columns: 1fr 1fr 1fr;  */
+/*   grid-template-rows: 50px 1fr 50px; */
+/* } */
+.drop-target1 {
+  height: 10%;
   display: grid;
+  grid-template-areas:
+  "timeblock1"
+  "timeblock2"
+  "timeblock3"
+  "timeblock4"
+  "timeblock5";
+  grid-template-columns: 1fr; 
+  grid-template-rows: 50px 1fr 50px;
+}
+
+.drop-target2 {
+  height: 10%;
+  padding-bottom: 20px;
+  display: grid;
+  grid-template-areas:
+  "timeblock1"
+  "timeblock2"
+  "timeblock3"
+  "timeblock4"
+  "timeblock5";
+  grid-template-columns: 1fr 5fr; 
+  /* grid-template-rows: 50px 1fr 50px; */
+  grid-template-rows: 1fr;
 }
 
 .context-menu-item:hover {
