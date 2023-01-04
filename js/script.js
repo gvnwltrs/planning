@@ -212,5 +212,83 @@ function handleDelete() {
 
 }
 
+// TODO: refactor!!
+let clock = function () {
+
+  // get time 
+  let currentTime = new Date().getHours(); 
+  console.log('time now is: ', currentTime);
+ 
+  // highlight current hour block  
+  switch(currentTime) {
+    case 5: 
+      document.getElementsByClassName('row-1')[0].style.color = 'BlueViolet';
+      break;
+    case 6: 
+      document.getElementsByClassName('row-2')[0].style.color = 'BlueViolet';
+      break;
+    case 7: 
+      document.getElementsByClassName('row-3')[0].style.color = 'BlueViolet';
+      break;
+    case 8: 
+      document.getElementsByClassName('row-4')[0].style.color = 'BlueViolet';
+      break;
+    case 9: 
+      document.getElementsByClassName('row-5')[0].style.color = 'BlueViolet';
+      break;
+    case 10: 
+      document.getElementsByClassName('row-6')[0].style.color = 'BlueViolet';
+      break;
+    case 11: 
+      document.getElementsByClassName('row-7')[0].style.color = 'BlueViolet';
+      break;
+    case 12: 
+      document.getElementsByClassName('row-8')[0].style.color = 'BlueViolet';
+      break;
+    case 13: 
+      document.getElementsByClassName('row-9')[0].style.color = 'BlueViolet';
+      break;
+    case 14: 
+      // document.getElementsByClassName('row-10')[0].style.color = 'BlueViolet';
+      document.getElementsByClassName('row-10')[0].style.color = 'BlueViolet';
+      break;
+    case 15: 
+      document.getElementsByClassName('row-11')[0].style.color = 'BlueViolet';
+      break;
+    case 16: 
+      document.getElementsByClassName('row-12')[0].style.color = 'BlueViolet';
+      break;
+    case 17: 
+      document.getElementsByClassName('row-13')[0].style.color = 'BlueViolet';
+      break;
+    case 18: 
+      document.getElementsByClassName('row-14')[0].style.color = 'BlueViolet';
+      break;
+    case 19: 
+      document.getElementsByClassName('row-15')[0].style.color = 'BlueViolet';
+      break;
+    case 20: 
+      document.getElementsByClassName('row-16')[0].style.color = 'BlueViolet';
+      break;
+    case 21: 
+      document.getElementsByClassName('row-16')[0].style.color = 'BlueViolet';
+      break;
+    case 22: 
+      document.getElementsByClassName('row-16')[0].style.color = 'BlueViolet';
+      break;
+    case 23: 
+      document.getElementsByClassName('row-16')[0].style.color = 'BlueViolet';
+      break;
+    case 0: 
+      document.getElementsByClassName('row-16')[0].style.color = 'BlueViolet';
+      break;
+    default: 
+      break;
+  }
+}
+
+setInterval(clock, 1000);  
+
+
 
 
