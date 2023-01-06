@@ -17,6 +17,9 @@
 ## Status 
 - initial iteration completeded (target deadline was 1 month) 
 
+## TODO's 
+- refactor 
+
 ## Future Work 
 - incoporate some of the other features mentioned in the idea section 
 
