@@ -19,3 +19,6 @@
 
 ## Future Work 
 - incoporate some of the other features mentioned in the idea section 
+
+## Try it out! 
+https://gvnwltrs.github.io/task-manager/
