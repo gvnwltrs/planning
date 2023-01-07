@@ -98,6 +98,7 @@ button {
   flex: 1;
   margin: 10px;
   border-radius: 10px; 
+  resize: vertical;
 }
 
 #taskBlock h2 {

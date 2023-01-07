@@ -1,5 +1,7 @@
 "use strict";
 
+var sessionId = window.localStorage.getItem('sessionId');
+
 // Task Metrics
 let taskName = '';
 let timeEstimate = 0;
@@ -7,6 +9,7 @@ let complexity = 0;
 let impact = 0;  
 let deadline = 0;  
 let taskQueue = []; 
+let taskList = []; 
 let currentTaskSelect; 
 
 // Get the modal
@@ -97,6 +100,19 @@ createTask.onclick = function(event) {
 
   taskForm.reset();
   taskModal.style.display = 'none'; 
+
+  // store each new task in users local storage
+  let task = {
+    id: taskName,
+    innerHTML : taskName,
+    className : 'draggable' 
+  }
+  taskList.push(task); 
+
+  console.log('the elements I have right now are: ', taskList); 
+  window.localStorage.clear();
+  window.localStorage.setItem('sessionId', JSON.stringify(taskList));
+  // window.localStorage.setItem('sessionId', '1234');
 }
 
 let createTaskBlock = function() {
@@ -199,14 +215,33 @@ function handleContextMenu(event) {
     console.log(event); 
     menuContainer.style.display = "none";
   }
-
 }
+
+document.addEventListener('click', (event) => {
+  if (typeof menuContainer != 'undefined')
+    menuContainer.classList.remove('context-menu-container');
+});
+
 
 function handleDelete() {
 
+  console.log('current task selected is: ', currentTaskSelect.id);
+  // closes context menu
   this.parentElement.parentElement.remove();
   if (currentTaskSelect) {
+    // removes the selected element 
     currentTaskSelect.remove(); 
+
+    // remove the element's data from the list 
+    let newTaskList = taskList.filter(function(obj) {
+      return obj.id != currentTaskSelect.id;
+    }); 
+
+    console.log('task list was: ', taskList);
+    console.log('new list is: ', newTaskList);
+
+    // store the updated list in local storage 
+    window.localStorage.setItem('sessionId', JSON.stringify(newTaskList));
   }
   currentTaskSelect = undefined; 
 
@@ -309,7 +344,46 @@ let clock = function () {
   }
 }
 
+let restoreTasks = function () {
+  let taskParent = document.getElementById("drop-target");
+  let tasks = JSON.parse(sessionId); 
+  console.log('restored tasks are: ', tasks); 
+  console.log('restored tasks type: ', typeof tasks); 
+  console.log('number of tasks: ', tasks.length); 
+
+
+  // for (let task of Object.values(tasks)) {
+  for (let task of tasks) {
+    // retrieve stored tasks and put them back into the execution stack task queue
+    task = {
+      id: task.id,
+      innerHTML : task.innerHTML,
+      className : 'draggable' 
+    }
+    taskList.push(task); 
+
+    // recreate the tasks 
+    let newTaskElement = document.createElement('div');
+    newTaskElement.id = task.id;
+    newTaskElement.innerHTML = task.innerHTML;
+    newTaskElement.className = 'draggable'; 
+    taskParent.appendChild(newTaskElement);
+    createTaskBlock(); 
+    // console.log('element to be created: ', newTaskElement); 
+  }
+
+  // console.log('tasks are: ', tasks[0]); 
+  // taskParent.appendChild(tasks[0]);
+
+}
+
 setInterval(clock, 1000);  
+
+// let previousSession = browser.sessions.restore(sessionId); 
+// console.log('stored sessionId is: ', sessionId); 
+// console.log('stored sessionId is: ', 'test'); 
+
+restoreTasks(); 
 
 
 
