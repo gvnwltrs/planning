@@ -1,4 +1,4 @@
-# Taks-manager
+# Task-manager
 
 ## Idea (initial)
 ### simple project/task manager 
